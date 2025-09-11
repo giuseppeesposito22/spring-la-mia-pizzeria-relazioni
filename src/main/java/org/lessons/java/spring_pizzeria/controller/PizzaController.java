@@ -107,7 +107,7 @@ public class PizzaController {
         model.addAttribute("deal", deal);
 
 
-        return"deals/create";
+        return"deals/create-or-edit";
         }
 
 }
