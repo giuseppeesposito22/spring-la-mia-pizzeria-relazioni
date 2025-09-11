@@ -16,7 +16,30 @@
         <img th:src="@{'/img/' + ${pizza.img}}" alt="" class="w-50" />
 
         <h4 class="text-center">[[${pizza.description}]]</h4>
+        <a
+          class="btn btn-outline-primary w-25"
+          th:href="@{/pizzas/deal/{id} (id = ${pizza.id})}"
+        >
+          Crea nuova offerta speciale
+        </a>
       </div>
+
+      <table class="table my-5">
+        <thead>
+          <tr>
+            <th scope="col">Nome offerta</th>
+            <th scope="col">Data inizio offerta</th>
+            <th scope="col">Data fine offerta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="deal : ${pizza.deals}">
+            <td class="align-middle">[[${deal.title}]]</td>
+            <td class="align-middle">[[${deal.startDate}]]</td>
+            <td class="align-middle">[[${deal.endDate}]]</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>
