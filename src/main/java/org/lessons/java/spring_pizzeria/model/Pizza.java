@@ -1,9 +1,12 @@
 package org.lessons.java.spring_pizzeria.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -28,6 +31,9 @@ public class Pizza {
     @Min( value = 0, message = "Il prezzo non può essere negativo")
     private Double price;
 
+    @OneToMany(mappedBy = "pizza")
+    private List<Deal> deals;
+
 
     public Pizza() {
     }
@@ -40,6 +46,8 @@ public class Pizza {
         this.img = img;
         this.price = price;
     }
+
+    
 
     public Integer getId() {
         return id;
@@ -81,13 +89,21 @@ public class Pizza {
         this.price = price;
     }
 
+    
+    public List<Deal> getDeals() {
+        return deals;
+    }
+    
+    public void setDeals(List<Deal> deals) {
+        this.deals = deals;
+    }
+    
+    
     @Override
     public String toString() {
         return "Pizza [id=" + id + ", name=" + name + ", description=" + description + ", img=" + img + ", price="
                 + price + "]";
     }
-
-
 
     
 }
