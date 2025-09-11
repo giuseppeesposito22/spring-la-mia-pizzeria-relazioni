@@ -2,6 +2,7 @@ package org.lessons.java.spring_pizzeria.controller;
 
 import java.util.List;
 
+import org.lessons.java.spring_pizzeria.model.Deal;
 import org.lessons.java.spring_pizzeria.model.Pizza;
 import org.lessons.java.spring_pizzeria.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,5 +96,18 @@ public class PizzaController {
         repo.deleteById(id);
         return "redirect:/pizzas";
     }
+
+    @GetMapping("/deal/{id}")
+    public String deal(Model model, @PathVariable Integer id){
+        
+        Deal deal = new Deal();
+
+        deal.setPizza(repo.findById(id).get());
+
+        model.addAttribute("deal", deal);
+
+
+        return"deals/create";
+        }
 
 }
