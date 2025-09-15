@@ -1,9 +1,12 @@
 package org.lessons.java.spring_pizzeria.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -17,6 +20,9 @@ public class Ingredient {
 
     @NotBlank(message = "Il campo ingrediente non puo' essere vuoto")
     private String name;
+
+    @ManyToMany(mappedBy = "ingredients")
+    private List<Pizza> pizzas;
 
     public Ingredient(){};
 
