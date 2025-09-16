@@ -15,6 +15,18 @@
       <div class="row d-flex justify-content-center g-5">
         <img th:src="@{'/img/' + ${pizza.img}}" alt="" class="w-50" />
 
+        <h2 class="text-center">Ingredienti</h4>
+
+        <div class="d-flex justify-content-center">
+          <ul>
+            <li
+              th:each="ingredient : ${pizza.ingredients}"
+              th:text="${ingredient.name}"
+            ></li>
+          </ul>
+
+        </div>
+
         <h4 class="text-center">[[${pizza.description}]]</h4>
         <a
           class="btn btn-outline-primary w-25"

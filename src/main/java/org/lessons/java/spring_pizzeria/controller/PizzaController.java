@@ -83,6 +83,8 @@ public class PizzaController {
     public String edit(Model model, @PathVariable("id") Integer id){
 
         model.addAttribute("pizza", repo.findById(id).get());
+        model.addAttribute("ingredients", ingredientRepository.findAll());
+
         return "pizzas/edit";
     }
 
@@ -92,6 +94,8 @@ public class PizzaController {
 
 
         if (bindingResult.hasErrors()) {
+        model.addAttribute("ingredients", ingredientRepository.findAll());
+
             return "/pizzas/edit";
         }
 

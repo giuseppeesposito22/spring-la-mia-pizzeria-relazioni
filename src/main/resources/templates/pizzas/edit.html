@@ -33,6 +33,22 @@
             </ul>
           </div>
         </div>
+        <!-- checkbox -->
+        <div class="m-3">
+          <div th:each="ingredient : ${ingredients}">
+            <input
+              type="checkbox"
+              name="ingredients"
+              id="${ingredient.id}"
+              th:field="${pizza.ingredients}"
+              th:value="${ingredient.id}"
+            />
+            <label for="${ingredient.id}" class="form-label">
+              [[${ingredient.name}]]</label
+            >
+          </div>
+        </div>
+
         <div class="m-3">
           <label for="description" class="form-label">Descrizione</label>
           <textarea
