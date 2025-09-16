@@ -3,7 +3,9 @@ package org.lessons.java.spring_pizzeria.controller;
 import java.util.List;
 
 import org.lessons.java.spring_pizzeria.model.Deal;
+import org.lessons.java.spring_pizzeria.model.Ingredient;
 import org.lessons.java.spring_pizzeria.model.Pizza;
+import org.lessons.java.spring_pizzeria.repository.IngredientRepository;
 import org.lessons.java.spring_pizzeria.repository.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +26,9 @@ public class PizzaController {
 
     @Autowired
     private PizzaRepository repo;
+    
+    @Autowired
+    private IngredientRepository ingredientRepository;
 
     @GetMapping
     public String index(Model model, @RequestParam(name = "name", required = false) String name){
@@ -54,6 +59,7 @@ public class PizzaController {
     public String create(Model model){
 
         model.addAttribute("pizza", new Pizza());
+        model.addAttribute("ingredients", ingredientRepository.findAll());
 
         return "pizzas/create";
     }
@@ -63,6 +69,8 @@ public class PizzaController {
     public String store(Model model, @Valid @ModelAttribute("pizza") Pizza pizza, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
+        model.addAttribute("ingredients", ingredientRepository.findAll());
+
             return "/pizzas/create";
         }
 
@@ -93,6 +101,7 @@ public class PizzaController {
 
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable Integer id){
+
         repo.deleteById(id);
         return "redirect:/pizzas";
     }

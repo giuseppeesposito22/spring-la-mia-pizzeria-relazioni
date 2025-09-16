@@ -39,8 +39,8 @@ public class Pizza {
 
     @ManyToMany()
     @JoinTable(name = "ingredient_pizza", 
-    joinColumns = @JoinColumn(name = "ingredient_id"), 
-    inverseJoinColumns = @JoinColumn(name = "pizza_id"))
+    joinColumns = @JoinColumn(name = "pizza_id"), 
+    inverseJoinColumns = @JoinColumn(name = "ingredient_id"))
     private List<Ingredient> ingredients;
 
 
